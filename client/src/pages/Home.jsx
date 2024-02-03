@@ -6,17 +6,17 @@ const Home = () => {
     {
       Name: "David",
       Email: "Hello@gmail.com",
-      Status: "Adctive",
+      Status: "Active",
     },
     {
       Name: "David",
       Email: "Hello@gmail.com",
-      Status: "Adctive",
+      Status: "Active",
     },
     {
       Name: "David",
       Email: "Hello@gmail.com",
-      Status: "Adctive",
+      Status: "Active",
     },
   ]);
   return (
