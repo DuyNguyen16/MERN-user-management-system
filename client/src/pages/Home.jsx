@@ -1,24 +1,18 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [users, setUSers] = useState([
-    {
-      Name: "David",
-      Email: "Hello@gmail.com",
-      Status: "Active",
-    },
-    {
-      Name: "David",
-      Email: "Hello@gmail.com",
-      Status: "Active",
-    },
-    {
-      Name: "David",
-      Email: "Hello@gmail.com",
-      Status: "Active",
-    },
-  ]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // fetching data from database
+    axios
+      .get("http://localhost:3001")
+      .then((result) => setUsers(result.data))
+      .catch((err) => console.log(err));
+  });
+
   return (
     <section className="flex justify-center mt-12">
       <div className="w-[30rem] bg-[#fafafa] shadow-md">
@@ -34,9 +28,9 @@ const Home = () => {
           <tbody className="">
             {users.map((user) => (
               <tr className="border">
-                <td className="px-3 py-3">{user.Name}</td>
-                <td className="px-3 py-3">{user.Email}</td>
-                <td className="px-3 py-3">{user.Status}</td>
+                <td className="px-3 py-3">{user.name}</td>
+                <td className="px-3 py-3">{user.email}</td>
+                <td className="px-3 py-3">{user.status}</td>
                 <td className="px-3 py-3 flex flex-row gap-2">
                   <Link to={"/update"}>
                     <button className="hover:cursor-pointer">Edit</button>
