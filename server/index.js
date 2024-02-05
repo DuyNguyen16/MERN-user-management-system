@@ -19,6 +19,37 @@ app.get("/", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+// get a specific user data by id
+app.get("/getUser/:id", (req, res) => {
+  const id = req.params.id;
+  userModel
+    .findById({ _id: id })
+    .then((id) => res.json(id))
+    .catch((err) => console.log(err));
+});
+
+// update user
+app.put("/updateUser/:id", (req, res) => {
+  const id = req.params.id;
+  userModel
+    .findByIdAndUpdate(
+      { _id: id },
+      { name: req.body.name, email: req.body.email, status: req.body.status }
+    )
+    .then((id) => res.json(id))
+    .catch((err) => console.log(err));
+});
+
+// delete user
+app.delete("/deleteUser/:id", (req, res) => {
+  const id = req.params.id;
+
+  userModel
+    .findByIdAndDelete({ _id: id })
+    .then((res) => res.json(res))
+    .catch((err) => res.json(err));
+});
+
 // create user api
 app.post("/createUser", (req, res) => {
   userModel
